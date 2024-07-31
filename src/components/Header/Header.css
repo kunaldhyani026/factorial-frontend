@@ -1,0 +1,57 @@
+/* src/components/Header/Header.css */
+.header {
+    background-color: #1d4d6b; /* Blue background color */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Slightly stronger shadow */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.header-text {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff; /* Ensure the text color is white */
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-button {
+    background-color: #6d78b0; /* Slightly darker blue for buttons */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-left: 10px; /* Space between buttons */
+    margin-right: 10px;
+    display: inline-block; /* Ensure the button size adjusts to content */
+}
+
+.nav-button:hover {
+    background-color: #3ba93b; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.admin-button {
+    background-color: #6d78b0; /* Red button background */
+    color: #fff; /* White text color */
+    margin-left: auto; /* Push the Admin button to the extreme right */
+}
+
+.admin-button:hover {
+    background-color: #3ba93b; /* Darker red on hover */
+}
