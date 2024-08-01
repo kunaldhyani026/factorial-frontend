@@ -19,6 +19,13 @@ const Admin = () => {
                     <p>Click here to add a new customizable option for a customizable.</p>
                 </div>
             </Link>
+
+            <Link to={`/admin/modify-customizable-option`} className="product-card-link">
+                <div className="card">
+                    <h2>Modify Customizable Options</h2>
+                    <p>Click here to modify customizable options.</p>
+                </div>
+            </Link>
         </div>
     );
 };

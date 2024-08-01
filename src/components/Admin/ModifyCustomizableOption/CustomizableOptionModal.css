@@ -1,0 +1,87 @@
+/* Container for the modal */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 400px; /* Adjust width as needed */
+    max-width: 100%;
+    z-index: 1000;
+}
+
+/* Modal header styles */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+
+/* Modal content styles */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.modal-content input,
+.modal-content select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+/* Disabled input style */
+.modal-content input[disabled] {
+    background-color: #f5f5f5;
+    color: #888;
+}
+
+/* Modal footer styles */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-footer button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.modal-footer button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
+
+.modal-footer button.cancel {
+    background-color: #6c757d;
+}
+
+.modal-footer button:hover {
+    opacity: 0.9;
+}

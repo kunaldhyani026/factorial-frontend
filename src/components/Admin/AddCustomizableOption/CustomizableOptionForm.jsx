@@ -10,6 +10,7 @@ const CustomizableOptionForm = () => {
     const [customizables, setCustomizables] = useState([]);
     const [isSaveDisabled, setIsSaveDisabled] = useState(true);
     const [nameError, setNameError] = useState('');
+    const [priceError, setPriceError] = useState('');
 
     useEffect(() => {
         fetchData();
@@ -41,8 +42,8 @@ const CustomizableOptionForm = () => {
             const normalizedOptionName = optionName.trim().toLowerCase();
             const isNameExists = existingOptionNames.includes(normalizedOptionName);
 
-            setIsSaveDisabled(isNameExists || !optionName.trim() || !optionPrice);
-            setNameError(isNameExists ? 'Option name already exists.' : '');
+            setIsSaveDisabled(isNameExists || !optionName.trim() || !optionPrice || priceError);
+            setNameError(isNameExists ? 'Option already exists for the customizable' : '');
         }
     }, [optionName, customizableId, existingOptions, optionPrice]);
 
@@ -51,7 +52,15 @@ const CustomizableOptionForm = () => {
     };
 
     const handlePriceChange = (e) => {
-        setOptionPrice(e.target.value);
+        const value = e.target.value;
+        setOptionPrice(value);
+
+        // Validate price
+        if (value.trim() === '' || parseFloat(value) < 0) {
+            setPriceError('Price must be a positive number.');
+        } else {
+            setPriceError('');
+        }
     };
 
     const handleInStockChange = (e) => {
@@ -65,6 +74,9 @@ const CustomizableOptionForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isSaveDisabled) return;
+        if (priceError) {
+            return; // Do not save if there's a price error
+        }
 
         try {
             const response = await fetch('http://localhost:3000/customizable_options', {
@@ -131,6 +143,7 @@ const CustomizableOptionForm = () => {
                         onChange={handlePriceChange}
                         required
                     />
+                    {priceError && <p className="error-message">{priceError}</p>}
                 </div>
 
                 <div>

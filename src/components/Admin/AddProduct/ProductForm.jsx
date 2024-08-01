@@ -48,7 +48,7 @@ const ProductForm = () => {
         const hasSelectedOptions = selectedOptions.length > 0;
         const hasDescription = productDescription.trim() !== '';
         setIsButtonDisabled(!(isValidProductName && hasSelectedOptions && normalizedProductName !== '' && hasDescription));
-        setNameError(isValidProductName ? '' : 'Product name already exists.');
+        setNameError(isValidProductName ? '' : 'Product already exists.');
     }, [productName, selectedOptions, products, productDescription]);
 
     const handleNameChange = (e) => {
