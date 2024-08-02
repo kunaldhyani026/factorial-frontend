@@ -1,11 +1,14 @@
+// CustomizableOptionsList.jsx
 import React, { useState, useEffect } from 'react';
 import CustomizableOptionModal from './CustomizableOptionModal';
-import './CustomizableOptionsList.css'; // Import the updated CSS
+import SpecialPricingModal from './AddSpecialPrice/SpecialPricingModal';
+import './CustomizableOptionsList.css';
 
 const CustomizableOptionsList = () => {
     const [customizables, setCustomizables] = useState([]);
     const [customizableOptions, setCustomizableOptions] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSpecialPricingModalOpen, setIsSpecialPricingModalOpen] = useState(false);
     const [currentOption, setCurrentOption] = useState(null);
 
     const fetchData = async () => {
@@ -29,8 +32,20 @@ const CustomizableOptionsList = () => {
         document.body.style.overflow = 'hidden';
     };
 
+    const handleSpecialPricingClick = (option) => {
+        setCurrentOption(option);
+        setIsSpecialPricingModalOpen(true);
+        document.body.style.overflow = 'hidden';
+    };
+
     const handleModalClose = () => {
         setIsModalOpen(false);
+        setCurrentOption(null);
+        document.body.style.overflow = 'auto';
+    };
+
+    const handleSpecialPricingModalClose = () => {
+        setIsSpecialPricingModalOpen(false);
         setCurrentOption(null);
         document.body.style.overflow = 'auto';
     };
@@ -38,6 +53,7 @@ const CustomizableOptionsList = () => {
     return (
         <div className="customizable-options-list">
             {isModalOpen && <div className="overlay"></div>}
+            {isSpecialPricingModalOpen && <div className="overlay"></div>}
             <h2>Customizable Options</h2>
             {customizables.map(customizable => (
                 <div key={customizable.id} className="customizable-group">
@@ -59,6 +75,7 @@ const CustomizableOptionsList = () => {
                                             Modify
                                         </button>
                                         <button
+                                            onClick={() => handleSpecialPricingClick(option)}
                                             className="modify-button">
                                             Add Special Price
                                         </button>
@@ -86,7 +103,19 @@ const CustomizableOptionsList = () => {
                 />
             )}
 
-
+            {isSpecialPricingModalOpen && (
+                <SpecialPricingModal
+                    isOpen={isSpecialPricingModalOpen}
+                    option={currentOption}
+                    onClose={handleSpecialPricingModalClose}
+                    customizables={customizables}
+                    allOptions={customizableOptions}
+                    onSave={() => {
+                        fetchData();
+                        // Optionally refresh the list after saving
+                    }}
+                />
+            )}
         </div>
     );
 };
