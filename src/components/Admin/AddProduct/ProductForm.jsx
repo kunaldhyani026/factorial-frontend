@@ -137,7 +137,7 @@ const ProductForm = () => {
                                 <div className="options-row">
                                     {groupedOptions[customizable.id] && (
                                         groupedOptions[customizable.id].map(option => (
-                                            <label key={option.id} className="option-item">
+                                            <label key={option.id} className="customizable-option-item">
                                                 <input
                                                     type="checkbox"
                                                     value={option.id}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CustomizableOptionModal.css';  // Ensure this path is correct
+import './CustomizableOptionModal.css';
 
 const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
     const [name, setName] = useState('');
@@ -20,7 +20,6 @@ const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
         const value = e.target.value;
         setPrice(value);
 
-        // Validate price
         if (value.trim() === '' || parseFloat(value) < 0) {
             setPriceError('Price must be a positive number.');
         } else {
@@ -30,7 +29,7 @@ const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
 
     const handleSave = async () => {
         if (priceError) {
-            return; // Do not save if there's a price error
+            return;
         }
 
         try {
@@ -41,13 +40,12 @@ const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
                 },
                 body: JSON.stringify({
                     price: parseFloat(price),
-                    special_price: null
                 }),
             });
 
             if (response.ok) {
                 onSave();
-                onClose(); // Close modal only on successful save
+                onClose();
             } else {
                 setError('Failed to save changes. Please try again.');
             }
@@ -59,50 +57,52 @@ const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="modal">
-            <div className="modal-header">
-                <h2>Modify Customizable Option</h2>
-            </div>
-            <div className="modal-content">
-                <label htmlFor="name">Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    value={name}
-                    disabled
-                />
+        <div className="modal-overlay" onClick={(e) => { e.stopPropagation(); onClose(); }}>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h2>Modify Customizable Option</h2>
+                </div>
+                <div className="modal-content">
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        disabled
+                    />
 
-                <label htmlFor="price">Price</label>
-                <input
-                    type="number"
-                    id="price"
-                    value={price}
-                    onChange={handlePriceChange}
-                    min="0"
-                />
-                {priceError && <p className="error-message">{priceError}</p>}
+                    <label htmlFor="price">Price</label>
+                    <input
+                        type="number"
+                        id="price"
+                        value={price}
+                        onChange={handlePriceChange}
+                        min="0"
+                    />
+                    {priceError && <p className="error-message">{priceError}</p>}
 
-                <label htmlFor="inStock">In Stock</label>
-                <select
-                    id="inStock"
-                    value={inStock}
-                    onChange={(e) => setInStock(e.target.value === 'true')}
-                    disabled
-                >
-                    <option value={true}>True</option>
-                    <option value={false}>False</option>
-                </select>
+                    <label htmlFor="inStock">In Stock</label>
+                    <select
+                        id="inStock"
+                        value={inStock}
+                        onChange={(e) => setInStock(e.target.value === 'true')}
+                        disabled
+                    >
+                        <option value={true}>True</option>
+                        <option value={false}>False</option>
+                    </select>
 
-                {error && <p className="error-message">{error}</p>}
-            </div>
-            <div className="modal-footer">
-                <button className="cancel" onClick={onClose}>Cancel</button>
-                <button
-                    onClick={handleSave}
-                    disabled={!!priceError} // Disable Save button if there's a price error
-                >
-                    Save
-                </button>
+                    {error && <p className="error-message">{error}</p>}
+                </div>
+                <div className="modal-footer">
+                    <button className="cancel" onClick={onClose}>Cancel</button>
+                    <button
+                        onClick={handleSave}
+                        disabled={!!priceError}
+                    >
+                        Save
+                    </button>
+                </div>
             </div>
         </div>
     );

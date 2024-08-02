@@ -43,7 +43,7 @@
     gap: 10px;
 }
 
-.option-item {
+.customizable-option-item {
     display: flex;
     align-items: center;
     margin-right: 10px;

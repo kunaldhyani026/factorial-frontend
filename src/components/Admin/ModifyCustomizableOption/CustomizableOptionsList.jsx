@@ -35,10 +35,6 @@ const CustomizableOptionsList = () => {
         document.body.style.overflow = 'auto';
     };
 
-    const handleModalSave = (price) => {
-        debugger
-    }
-
     return (
         <div className="customizable-options-list">
             {isModalOpen && <div className="overlay"></div>}
@@ -56,11 +52,22 @@ const CustomizableOptionsList = () => {
                                     <span className={`option-stock ${option.stock ? '' : 'out-of-stock'}`}>
                                         {option.stock ? 'In Stock' : 'Out of Stock'}
                                     </span>
-                                    <button
-                                        onClick={() => handleModifyClick(option)}
-                                        className="modify-button">
-                                        Modify
-                                    </button>
+                                    <div className="option-actions">
+                                        <button
+                                            onClick={() => handleModifyClick(option)}
+                                            className="modify-button">
+                                            Modify
+                                        </button>
+                                        <button
+                                            className="modify-button">
+                                            Add Special Price
+                                        </button>
+                                        <button
+                                            className="modify-button"
+                                            disabled>
+                                            View Special Price Combinations
+                                        </button>
+                                    </div>
                                 </li>
                             ))}
                     </ul>
@@ -78,6 +85,8 @@ const CustomizableOptionsList = () => {
                     }}
                 />
             )}
+
+
         </div>
     );
 };

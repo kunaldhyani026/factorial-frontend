@@ -55,6 +55,12 @@
     color: #888;
 }
 
+/* Error message style */
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
 /* Modal footer styles */
 .modal-footer {
     display: flex;
