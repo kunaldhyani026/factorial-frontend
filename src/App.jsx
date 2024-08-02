@@ -9,6 +9,7 @@ import Header from "./components/Header/Header";
 import ProductForm from './components/Admin/AddProduct/ProductForm';
 import CustomizableOptionForm from "./components/Admin/AddCustomizableOption/CustomizableOptionForm";
 import CustomizableOptionsList from "./components/Admin/ModifyCustomizableOption/CustomizableOptionsList";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/admin/add-product" element={<ProductForm/>} />
           <Route path="/admin/add-customizable-option" element={<CustomizableOptionForm/>} />
           <Route path="/admin/modify-customizable-option" element={<CustomizableOptionsList/>} />
+          <Route path="/cart" element={<Cart/>} />
         </Routes>
       </Router>
   );

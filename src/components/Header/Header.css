@@ -55,3 +55,13 @@
 .admin-button:hover {
     background-color: #3ba93b; /* Darker red on hover */
 }
+
+.cart-button {
+    background-color: #6d78b0; /* Red button background */
+    color: #fff; /* White text color */
+    margin-left: auto; /* Push the Admin button to the extreme right */
+}
+
+.cart-button:hover {
+    background-color: #3ba93b; /* Darker red on hover */
+}
