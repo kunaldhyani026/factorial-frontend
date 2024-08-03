@@ -8,6 +8,8 @@ const CustomizableOptionForm = () => {
     const [customizableId, setCustomizableId] = useState('');
     const [existingOptions, setExistingOptions] = useState([]);
     const [customizables, setCustomizables] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [selectedProducts, setSelectedProducts] = useState([]);
     const [isSaveDisabled, setIsSaveDisabled] = useState(true);
     const [nameError, setNameError] = useState('');
     const [priceError, setPriceError] = useState('');
@@ -22,6 +24,7 @@ const CustomizableOptionForm = () => {
             const data = await response.json();
             setCustomizables(data.customizables);
             setExistingOptions(data.customizable_options);
+            setProducts(data.products);
 
             // Initialize form with the first customizable id
             if (data.customizables.length > 0) {
@@ -71,6 +74,15 @@ const CustomizableOptionForm = () => {
         setCustomizableId(parseInt(e.target.value));
     };
 
+    const handleProductChange = (e) => {
+        const productId = parseInt(e.target.value);
+        setSelectedProducts((prevProducts) =>
+            prevProducts.includes(productId)
+                ? prevProducts.filter(id => id !== productId)
+                : [...prevProducts, productId]
+        );
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isSaveDisabled) return;
@@ -89,6 +101,7 @@ const CustomizableOptionForm = () => {
                     price: optionPrice,
                     in_stock: inStock,
                     customizable_id: customizableId,
+                    product_ids : selectedProducts,
                 }),
             });
 
@@ -99,6 +112,7 @@ const CustomizableOptionForm = () => {
                 setOptionName('');
                 setOptionPrice('');
                 setInStock(true);
+                setSelectedProducts([]);
             } else {
                 alert('Failed to add customizable option.');
             }
@@ -153,6 +167,29 @@ const CustomizableOptionForm = () => {
                         <option value="false">No</option>
                     </select>
                 </div>
+
+
+                <div>
+                    <label>Applicable Products</label>
+                    <div className="product-row">
+                        {
+                            products.map(product => (
+                                <label key={product.id} className="product-item">
+                                    <input
+                                        type="checkbox"
+                                        value={product.id}
+                                        checked={selectedProducts.includes(product.id)}
+                                        onChange={handleProductChange}
+                                    />
+                                    {product.name}
+                                </label>
+                            ))
+                        }
+                    </div>
+                </div>
+
+
+
 
                 <button type="submit" disabled={isSaveDisabled}>
                     Add Option

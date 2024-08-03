@@ -55,3 +55,20 @@
     font-size: 0.875rem;
     text-align: center;
 }
+
+.product-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.product-row label {
+    display: flex;
+    font-weight: normal;
+}
