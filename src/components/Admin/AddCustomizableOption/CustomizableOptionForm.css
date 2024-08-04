@@ -71,4 +71,5 @@
 .product-row label {
     display: flex;
     font-weight: normal;
+    white-space: nowrap;
 }
