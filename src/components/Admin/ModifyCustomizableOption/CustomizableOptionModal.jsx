@@ -33,7 +33,7 @@ const CustomizableOptionModal = ({ isOpen, onClose, option, onSave }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/customizable_options/${option.id}`, {
+            const response = await fetch(`http://localhost:4000/customizable_options/${option.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

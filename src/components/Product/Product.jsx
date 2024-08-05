@@ -17,7 +17,7 @@ const Product = () => {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/products/${id}`);
+                const response = await fetch(`http://localhost:4000/products/${id}`);
                 if (response.status !== 200) throw new Error('Failed to fetch data');
                 const data = await response.json();
                 setCustomizables(data.customizables);
@@ -72,7 +72,7 @@ const Product = () => {
             customizable_options: Object.values(selectedOptions),
         };
         try {
-            const response = await fetch('http://localhost:3000/carts/add_item', {
+            const response = await fetch('http://localhost:4000/carts/add_item', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

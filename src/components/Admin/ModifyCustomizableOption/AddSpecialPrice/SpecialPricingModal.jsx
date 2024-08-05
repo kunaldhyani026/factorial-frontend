@@ -47,7 +47,7 @@ const SpecialPricingModal = ({ isOpen, onClose, customizables, allOptions, optio
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/pricing_groups`, {
+            const response = await fetch(`http://localhost:4000/pricing_groups`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

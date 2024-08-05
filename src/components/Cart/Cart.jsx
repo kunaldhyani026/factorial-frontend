@@ -9,7 +9,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchCartData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/carts'); // Replace with your API endpoint
+                const response = await fetch('http://localhost:4000/carts'); // Replace with your API endpoint
                 if (response.status !== 200) {
                     throw new Error('Network response was not ok');
                 }

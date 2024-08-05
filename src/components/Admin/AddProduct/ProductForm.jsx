@@ -13,7 +13,7 @@ const ProductForm = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:3000/customizable_options'); // Replace with actual endpoint
+            const response = await fetch('http://localhost:4000/customizable_options'); // Replace with actual endpoint
             const data = await response.json();
             setProducts(data.products);
             setAllCustomizables(data.customizables);
@@ -73,7 +73,7 @@ const ProductForm = () => {
         if (isButtonDisabled) return;
 
         try {
-            const response = await fetch('http://localhost:3000/products', {
+            const response = await fetch('http://localhost:4000/products', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
