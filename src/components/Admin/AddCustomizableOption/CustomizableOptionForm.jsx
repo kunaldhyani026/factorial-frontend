@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CustomizableOptionForm.css';  // Assuming you have a CSS file for styling
+import './CustomizableOptionForm.css';
 
 const CustomizableOptionForm = () => {
     const [optionName, setOptionName] = useState('');
@@ -20,13 +20,12 @@ const CustomizableOptionForm = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:4000/customizable_options'); // Replace with actual endpoint
+            const response = await fetch('http://localhost:4000/customizable_options');
             const data = await response.json();
             setCustomizables(data.customizables);
             setExistingOptions(data.customizable_options);
             setProducts(data.products);
 
-            // Initialize form with the first customizable id
             if (data.customizables.length > 0) {
                 setCustomizableId(data.customizables[0].id);
             }
@@ -36,7 +35,6 @@ const CustomizableOptionForm = () => {
     };
 
     useEffect(() => {
-        // Check if option name exists for the selected customizable
         if (customizableId) {
             const existingOptionNames = existingOptions
                 .filter(option => option.customizable_id === customizableId)
@@ -58,7 +56,6 @@ const CustomizableOptionForm = () => {
         const value = e.target.value;
         setOptionPrice(value);
 
-        // Validate price
         if (value.trim() === '' || parseFloat(value) < 0) {
             setPriceError('Price must be a positive number.');
         } else {
@@ -87,7 +84,7 @@ const CustomizableOptionForm = () => {
         e.preventDefault();
         if (isSaveDisabled) return;
         if (priceError) {
-            return; // Do not save if there's a price error
+            return;
         }
 
         try {
@@ -107,7 +104,6 @@ const CustomizableOptionForm = () => {
 
             if (response.status === 201) {
                 alert('Customizable option added successfully!');
-                // Refetch data to update the form
                 fetchData();
                 setOptionName('');
                 setOptionPrice('');

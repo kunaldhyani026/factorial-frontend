@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ProductForm.css';  // Assuming you have a CSS file for styling
+import './ProductForm.css';
 
 const ProductForm = () => {
     const [productName, setProductName] = useState('');
@@ -13,12 +13,11 @@ const ProductForm = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:4000/customizable_options'); // Replace with actual endpoint
+            const response = await fetch('http://localhost:4000/customizable_options');
             const data = await response.json();
             setProducts(data.products);
             setAllCustomizables(data.customizables);
 
-            // Group customizable options by customizable_id
             const groupedOptions = data.customizable_options.reduce((acc, option) => {
                 if (!acc[option.customizable_id]) {
                     acc[option.customizable_id] = [];
@@ -38,7 +37,6 @@ const ProductForm = () => {
     }, []);
 
     useEffect(() => {
-        // Normalize product name and check existence
         const normalizedProductName = productName.trim().toLowerCase();
         const isNameExists = products.some(product =>
             product.name.trim().toLowerCase() === normalizedProductName

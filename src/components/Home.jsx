@@ -1,6 +1,5 @@
-// src/components/Home/Home.js
 import React, { useState, useEffect } from 'react';
-import './Home.css'; // Import CSS for styling
+import './Home.css';
 import {Link} from "react-router-dom";
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:4000/products'); // Replace with your API endpoint
+                const response = await fetch('http://localhost:4000/products');
                 if (response.status !==  200) {
                     throw new Error('Network response was not ok');
                 }

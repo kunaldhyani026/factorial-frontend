@@ -1,4 +1,3 @@
-// CustomizableOptionsList.jsx
 import React, { useState, useEffect } from 'react';
 import CustomizableOptionModal from './CustomizableOptionModal';
 import SpecialPricingModal from './AddSpecialPrice/SpecialPricingModal';
@@ -13,7 +12,7 @@ const CustomizableOptionsList = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:4000/customizable_options'); // Replace with actual API endpoint
+            const response = await fetch('http://localhost:4000/customizable_options');
             const data = await response.json();
             setCustomizables(data.customizables);
             setCustomizableOptions(data.customizable_options);
@@ -98,7 +97,6 @@ const CustomizableOptionsList = () => {
                     onClose={handleModalClose}
                     onSave={() => {
                         fetchData();
-                        // Optionally refresh the list after saving
                     }}
                 />
             )}
@@ -112,7 +110,6 @@ const CustomizableOptionsList = () => {
                     allOptions={customizableOptions}
                     onSave={() => {
                         fetchData();
-                        // Optionally refresh the list after saving
                     }}
                 />
             )}

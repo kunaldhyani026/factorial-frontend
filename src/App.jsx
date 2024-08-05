@@ -1,8 +1,7 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Admin from './components/Admin/Admin'; // Directly importing Admin.js
-import './App.css'; // Importing CSS for styling
+import Admin from './components/Admin/Admin';
+import './App.css';
 import Home from "./components/Home";
 import Product from "./components/Product/Product";
 import Header from "./components/Header/Header";

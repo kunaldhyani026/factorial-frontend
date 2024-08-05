@@ -1,4 +1,3 @@
-// src/components/Product/Product.js
 import React, { useState, useEffect } from 'react';
 import './Product.css';
 import { useParams } from 'react-router-dom';
@@ -62,7 +61,7 @@ const Product = () => {
     const handleSelectChange = (name, event) => {
         setSelectedOptions(prev => ({
             ...prev,
-            [name]: parseInt(event.target.value, 10), // Convert to integer
+            [name]: parseInt(event.target.value, 10),
         }));
     };
 

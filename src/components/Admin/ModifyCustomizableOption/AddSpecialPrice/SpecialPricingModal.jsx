@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './SpecialPricingModal.css'; // Import the updated CSS
+import './SpecialPricingModal.css';
 
 const SpecialPricingModal = ({ isOpen, onClose, customizables, allOptions, option, onSave }) => {
     const [priceName, setPriceName] = useState('');

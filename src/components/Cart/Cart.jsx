@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Cart.css'; // Ensure to create and use this CSS file for styling
+import './Cart.css';
 
 const Cart = () => {
     const [cart, setCart] = useState(null);
@@ -9,7 +9,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchCartData = async () => {
             try {
-                const response = await fetch('http://localhost:4000/carts'); // Replace with your API endpoint
+                const response = await fetch('http://localhost:4000/carts');
                 if (response.status !== 200) {
                     throw new Error('Network response was not ok');
                 }
